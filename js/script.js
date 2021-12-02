@@ -37,7 +37,10 @@ play.addEventListener("click", function () {
                   for (let x = 0; x < 16; x++) {
 
                      let num = getRndInteger(1, 100);
-                     bomb.push(num);
+                     if (bomb != num) {
+                         bomb.push(num);
+                         
+                     }
 
                  } 
                 for (let i = 1; i < 101; i++) {
@@ -49,10 +52,10 @@ play.addEventListener("click", function () {
                     
                     box.addEventListener("click", function () {
                         
-                        if (parseInt(bomb) != parseInt(i)) {
-                            this.classList.add("box", "clicked");
-                        } else {
+                        if (parseInt(bomb) === parseInt(i)) {
                             this.classList.add("box", "bomb")
+                        } else {
+                            this.classList.add("box", "clicked");
                             
                         }
                     });
