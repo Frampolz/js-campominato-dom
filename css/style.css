@@ -97,6 +97,10 @@ html {
     background-color: cornflowerblue ;
 }
 
+.box.bomb {
+    background-color: red;
+}
+
 
 /* /main */
 

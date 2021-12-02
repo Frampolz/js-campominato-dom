@@ -16,86 +16,92 @@ In seguito l'utente clicca su una cella: se il numero è presente nella lista de
 const boxContainer = document.querySelector(".box-container")
 const level = document.getElementById("level");
 const play = document.getElementById("play-button");
+let bomb = [];
+
+console.log(bomb);
+
 function getLevel() {
     selectLevel = document.getElementById("level");
     output = level.value;
     console.log(output);
 }
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 play.addEventListener("click", function () {
 
     boxContainer.innerHTML = "";
-/*      if (output == "easy") {
-            for (let i = 1; i < 101; i++) {
-                const box = document.createElement("div");
-                box.classList.add("box", "easy")
-                box.append(i);
-                boxContainer.append(box);
-                box.addEventListener("click", function () {
-                    this.classList.add("box", "clicked");
-                });
-                
-            }
-            
-     } else if (output == "medium") {
-            for (let i = 1; i < 82; i++) {
-                const box = document.createElement("div");
-                box.classList.add("box", "medium")
-                box.append(i);
-                boxContainer.append(box);
-                box.addEventListener("click", function () {
-                    this.classList.add("box", "clicked");
-                });
-                
-            }
-            
-     } else if (output == "hard") {
-            for (let i = 1; i < 50; i++) {
-                const box = document.createElement("div");
-                box.classList.add("box", "hard")
-                box.append(i);
-                boxContainer.append(box);
-                box.addEventListener("click", function () {
-                    this.classList.add("box", "clicked");
-                });
-            }
-        
-        } */ 
-
          switch (level.value) { 
-
             case "easy": 
+                  for (let x = 0; x < 16; x++) {
+
+                     let num = getRndInteger(1, 100);
+                     bomb.push(num);
+
+                 } 
                 for (let i = 1; i < 101; i++) {
                     const box = document.createElement("div");
                     box.classList.add("box", "easy")
                     box.append(i);
                     boxContainer.append(box);
+                    
+                    
                     box.addEventListener("click", function () {
-                        this.classList.add("box", "clicked");
+                        
+                        if (parseInt(bomb) != parseInt(i)) {
+                            this.classList.add("box", "clicked");
+                        } else {
+                            this.classList.add("box", "bomb")
+                            
+                        }
                     });
-            
+                    
+                   
                 }
                 break;
             case "medium":
+                 for (let x = 0; x < 16; x++) {
+
+                     let num = getRndInteger(1, 81);
+                     bomb.push(num);
+
+                 }
                for (let i = 1; i < 82; i++) {
                    const box = document.createElement("div");
                    box.classList.add("box", "medium")
                    box.append(i);
                    boxContainer.append(box);
                    box.addEventListener("click", function () {
-                       this.classList.add("box", "clicked");
+                       if (parseInt(bomb) != i) {
+                           this.classList.add("box", "clicked");
+                       } else {
+                           this.classList.add("box", "bomb")
+
+                       }
                    });
                }
                break;
         
             case "hard":
+                 for (let x = 0; x < 16; x++) {
+
+                     let num = getRndInteger(1, 49);
+                     bomb.push(num);
+
+                 }
                for (let i = 1; i < 50; i++) {
                    const box = document.createElement("div");
                    box.classList.add("box", "hard")
                    box.append(i);
                    boxContainer.append(box);
                    box.addEventListener("click", function () {
-                       this.classList.add("box", "clicked");
+                       if (parseInt(bomb) != i) {
+                           this.classList.add("box", "clicked");
+                       } else {
+                           this.classList.add("box", "bomb")
+
+                       }
                    });
                }
         
@@ -103,4 +109,3 @@ play.addEventListener("click", function () {
             }
 })
   
- 
