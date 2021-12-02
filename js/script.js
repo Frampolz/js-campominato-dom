@@ -16,9 +16,9 @@ In seguito l'utente clicca su una cella: se il numero è presente nella lista de
 const boxContainer = document.querySelector(".box-container")
 const level = document.getElementById("level");
 const play = document.getElementById("play-button");
-let bomb = [];
-
+const bomb = [];
 console.log(bomb);
+let CountClicks = -1;
 
 function getLevel() {
     selectLevel = document.getElementById("level");
@@ -34,15 +34,13 @@ play.addEventListener("click", function () {
     boxContainer.innerHTML = "";
          switch (level.value) { 
             case "easy": 
-                  for (let x = 0; x < 16; x++) {
+                   for (let x = 0; x < 16; x++) {
 
                      let num = getRndInteger(1, 100);
                      if (bomb != num) {
                          bomb.push(num);
-                         
                      }
-
-                 } 
+                 }
                 for (let i = 1; i < 101; i++) {
                     const box = document.createElement("div");
                     box.classList.add("box", "easy")
@@ -51,12 +49,16 @@ play.addEventListener("click", function () {
                     
                     
                     box.addEventListener("click", function () {
-                        
-                        if (parseInt(bomb) === parseInt(i)) {
+                        this.classList.add("box", "clicked");
+                        CountClicks += 1;
+                        console.log(CountClicks);
+                        if (bomb.includes(i)) {
+                            this.classList.remove("box", "clicked")
                             this.classList.add("box", "bomb")
-                        } else {
-                            this.classList.add("box", "clicked");
                             
+                            alert("hai perso! clicca ok e play per giocare ancora!" + "                                                        " + "il tuo punteggio è:" + " " + CountClicks)
+                            window.location.reload();
+                            console.log(this);
                         }
                     });
                     
@@ -67,7 +69,9 @@ play.addEventListener("click", function () {
                  for (let x = 0; x < 16; x++) {
 
                      let num = getRndInteger(1, 81);
-                     bomb.push(num);
+                     if (bomb != num) {
+                         bomb.push(num);
+                     }
 
                  }
                for (let i = 1; i < 82; i++) {
@@ -76,11 +80,16 @@ play.addEventListener("click", function () {
                    box.append(i);
                    boxContainer.append(box);
                    box.addEventListener("click", function () {
-                       if (parseInt(bomb) != i) {
-                           this.classList.add("box", "clicked");
-                       } else {
+                       this.classList.add("box", "clicked");
+                       CountClicks += 1;
+                       console.log(CountClicks);
+                       if (bomb.includes(i)) {
+                           this.classList.remove("box", "clicked")
                            this.classList.add("box", "bomb")
 
+                           alert("hai perso! clicca ok e play per giocare ancora!" + "                                                        " + "il tuo punteggio è:" + " " + CountClicks)
+                           window.location.reload();
+                           console.log(this);
                        }
                    });
                }
@@ -90,7 +99,9 @@ play.addEventListener("click", function () {
                  for (let x = 0; x < 16; x++) {
 
                      let num = getRndInteger(1, 49);
-                     bomb.push(num);
+                     if (bomb != num) {
+                         bomb.push(num);
+                     }
 
                  }
                for (let i = 1; i < 50; i++) {
@@ -99,11 +110,16 @@ play.addEventListener("click", function () {
                    box.append(i);
                    boxContainer.append(box);
                    box.addEventListener("click", function () {
-                       if (parseInt(bomb) != i) {
-                           this.classList.add("box", "clicked");
-                       } else {
+                       this.classList.add("box", "clicked");
+                       CountClicks += 1;
+                       console.log(CountClicks);
+                       if (bomb.includes(i)) {
+                           this.classList.remove("box", "clicked")
                            this.classList.add("box", "bomb")
 
+                           alert("hai perso! clicca ok e play per giocare ancora!" + "                                                        " + "il tuo punteggio è:" + " " + CountClicks)
+                           window.location.reload();
+                           console.log(this);
                        }
                    });
                }
